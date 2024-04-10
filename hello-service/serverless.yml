@@ -1,0 +1,15 @@
+org: entee28
+app: lambda-serverless-lab
+service: hello-service
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  deploymentMethod: direct
+  runtime: nodejs18.x
+
+functions:
+  api:
+    handler: index.handler
+    events:
+      - httpApi: "*"

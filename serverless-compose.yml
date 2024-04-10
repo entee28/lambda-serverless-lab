@@ -1,0 +1,7 @@
+services:
+  hello-service:
+    path: hello-service
+  bye-service:
+    path: bye-service
+  customer-service:
+    path: customer-service
