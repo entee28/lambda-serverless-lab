@@ -1,0 +1,10 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: serverless
+spec:
+  containers:
+    - name: serverless
+      image: entee28/serverless-jenkins
+      tty: true
+  restartPolicy: Never
