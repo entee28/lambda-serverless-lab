@@ -9,7 +9,7 @@ pipeline {
         stage('Install Serverless Framework') {
             steps {
                 sh 'curl -o- -L https://slss.io/install | bash'
-                sh 'SERVERLESS_ACCESS_KEY = $SERVERLESS_ACCESS_KEY'
+                sh 'export SERVERLESS_ACCESS_KEY = "$SERVERLESS_ACCESS_KEY"'
             }
         }
 
