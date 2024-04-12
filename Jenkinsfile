@@ -14,18 +14,18 @@ pipeline {
         stage('Package Serverless Services') {
             steps {
                 sh 'export SERVERLESS_ACCESS_KEY=$SERVERLESS_ACCESS_KEY'
-                sh 'cd hello-service && echo "Packaging Hello Service..." && serverless package && cd ..'
-                sh 'cd bye-service && echo "Packaging Bye Service..." && serverless package && cd ..'
-                sh 'cd customer-service && echo "Packaging Customer Service..." && serverless package'
+                sh 'cd hello-service && serverless package && cd ..'
+                sh 'cd bye-service && serverless package && cd ..'
+                sh 'cd customer-service && serverless package'
             }
         }
 
         stage('Deploy Serverless Services') {
             steps {
                 sh 'export SERVERLESS_ACCESS_KEY=$SERVERLESS_ACCESS_KEY'
-                sh 'cd hello-service && echo "Deploying Hello Service..." && serverless deploy -p ./.serverless && cd ..'
-                sh 'cd bye-service && echo "Deploying Bye Service..." && serverless deploy -p ./.serverless && cd ..'
-                sh 'cd customer-service && echo "Deploying Customer Service..." && serverless deploy -p ./.serverless'
+                sh 'cd hello-service && serverless deploy -p ./.serverless && cd ..'
+                sh 'cd bye-service && serverless deploy -p ./.serverless && cd ..'
+                sh 'cd customer-service && serverless deploy -p ./.serverless'
             }
         }
     }
