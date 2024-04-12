@@ -5,6 +5,8 @@ pipeline {
         stage('Package Serverless Services') {
             steps {
                 nodejs(nodeJSInstallationName: 'node') {
+                    sh 'npm config ls'
+                    sh 'echo $PATH'
                     sh 'npm install'
                     sh 'npx serverless package'
                 }
