@@ -9,7 +9,7 @@ pipeline {
         stage('Package Serverless Services') {
             steps {
                 sh 'curl -o- -L https://slss.io/install | bash'
-                sh 'echo $PATH'
+                sh 'sleep 100000'
                 sh 'serverless deploy'
             }
         }
