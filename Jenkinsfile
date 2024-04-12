@@ -5,9 +5,8 @@ pipeline {
         stage('Package Serverless Services') {
             steps {
                 nodejs(nodeJSInstallationName: 'node') {
-                    sh 'npm config ls'
-                    sh 'npm install -g serverless'
-                    sh 'serverless package'
+                    sh 'npm install'
+                    sh 'npx serverless package'
                 }
             }
         }
@@ -15,10 +14,10 @@ pipeline {
         stage('Deploy Serverless Services') {
             steps {
                 nodejs(nodeJSInstallationName: 'node') {
-                    sh 'npm install -g serverless'
-                    sh 'cd hello-service && echo "Deploying Hello Service..." && serverless deploy -p ./.serverless && cd ..'
-                    sh 'cd bye-service && echo "Deploying Bye Service..." && serverless deploy -p ./.serverless && cd ..'
-                    sh 'cd customer-service && echo "Deploying Customer Service..." && serverless deploy -p ./.serverless'
+                    sh 'npm install'
+                    sh 'cd hello-service && echo "Deploying Hello Service..." && npx serverless deploy -p ./.serverless && cd ..'
+                    sh 'cd bye-service && echo "Deploying Bye Service..." && npx serverless deploy -p ./.serverless && cd ..'
+                    sh 'cd customer-service && echo "Deploying Customer Service..." && npx serverless deploy -p ./.serverless'
                 }
             }
         }
