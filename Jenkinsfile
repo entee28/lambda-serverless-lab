@@ -15,6 +15,7 @@ pipeline {
         stage('Package Serverless Services') {
             steps {
                 sh 'export SERVERLESS_ACCESS_KEY=$SERVERLESS_ACCESS_KEY'
+                sh 'which serverless'
                 sh 'cd hello-service && echo "Packaging Hello Service..." && serverless package && cd ..'
                 sh 'cd bye-service && echo "Packaging Bye Service..." && serverless package && cd ..'
                 sh 'cd customer-service && echo "Packaging Customer Service..." && serverless package'
