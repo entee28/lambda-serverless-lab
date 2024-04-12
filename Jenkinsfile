@@ -9,13 +9,13 @@ pipeline {
         stage('Install Serverless Framework') {
             steps {
                 sh 'curl -o- -L https://slss.io/install | bash'
+                sh 'export SERVERLESS_ACCESS_KEY=$SERVERLESS_ACCESS_KEY'
             }
         }
 
         stage('Package Serverless Services') {
             steps {
-                sh 'export SERVERLESS_ACCESS_KEY=$SERVERLESS_ACCESS_KEY'
-                sh 'which serverless'
+                sh 'sleep 100000'
                 sh 'cd hello-service && echo "Packaging Hello Service..." && serverless package && cd ..'
                 sh 'cd bye-service && echo "Packaging Bye Service..." && serverless package && cd ..'
                 sh 'cd customer-service && echo "Packaging Customer Service..." && serverless package'
@@ -24,7 +24,6 @@ pipeline {
 
         stage('Deploy Serverless Services') {
             steps {
-                sh 'export SERVERLESS_ACCESS_KEY=$SERVERLESS_ACCESS_KEY'
                 sh 'cd hello-service && echo "Deploying Hello Service..." && serverless deploy -p ./.serverless && cd ..'
                 sh 'cd bye-service && echo "Deploying Bye Service..." && serverless deploy -p ./.serverless && cd ..'
                 sh 'cd customer-service && echo "Deploying Customer Service..." && serverless deploy -p ./.serverless'
