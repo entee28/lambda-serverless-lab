@@ -3,6 +3,10 @@ app: lambda-serverless-lab
 service: customer-service
 frameworkVersion: "3"
 
+package:
+  patterns:
+    - "!node_modules/**"
+
 provider:
   name: aws
   deploymentMethod: direct
