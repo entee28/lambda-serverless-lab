@@ -1,19 +1,19 @@
 org: entee28
 app: lambda-serverless-lab
 service: hello-service
-frameworkVersion: "3"
-
-package:
-  patterns:
-    - "!node_modules/**"
 
 provider:
   name: aws
+  region: ap-southeast-1
   deploymentMethod: direct
-  runtime: nodejs18.x
+  ecr:
+    images:
+      hello-service:
+        uri: ${param:repo}:${param:imagetag}
 
 functions:
   api:
-    handler: index.handler
+    image: hello-service
+    architecture: arm64
     events:
       - httpApi: "*"
