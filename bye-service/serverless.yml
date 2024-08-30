@@ -1,7 +1,6 @@
 org: entee28
 app: lambda-serverless-lab
 service: bye-service
-frameworkVersion: "3"
 
 package:
   patterns:
@@ -9,6 +8,7 @@ package:
 
 provider:
   name: aws
+  region: ap-southeast-1
   deploymentMethod: direct
   runtime: nodejs18.x
 
